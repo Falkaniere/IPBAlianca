@@ -1,5 +1,5 @@
 import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createStackNavigator, HeaderTitle } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialIcons'
 Icon.loadFont();
@@ -11,7 +11,6 @@ import PrayerList from '../pages/PrayerList';
 import Plans from '../pages/Plans';
 import Warning from '../pages/Warning';
 
-const App = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const AppRoutes: React.FC = () => (
@@ -26,45 +25,46 @@ const AppRoutes: React.FC = () => (
     <Tab.Screen
       name="Igreja"
       component={Church}
-      options={{ tabBarIcon: ({ focused, color }) => {
-        // You can return any component that you like here!
-        return <Icon name='home' size={36} color={color} />;
+      options={{
+        tabBarIcon: ({ focused, color }) => {
+          return <Icon name='home' size={36} color={color} />;
         },
       }}
     />
     <Tab.Screen
-      name="Lista de Oração"
+      name="PrayerList"
       component={PrayerList}
-      options={{ tabBarIcon: ({ focused, color }) => {
-        // You can return any component that you like here!
-        return <Icon name='list' size={36} color={color} />;
+      options={{
+        tabBarIcon: ({ focused, color }) => {
+          return <Icon name='list' size={36} color={color} />;
         },
       }}
     />
     <Tab.Screen
       name="Calendar"
       component={Calendar}
-      options={{ tabBarIcon: ({ focused, color }) => {
-        // You can return any component that you like here!
-        return <Icon name='today' size={36} color={color} />;
+      options={{
+        tabBarIcon: ({ focused, color }) => {
+          return <Icon name='today' size={36} color={color} />;
         },
       }}
     />
     <Tab.Screen
       name="Avisos"
       component={Warning}
-      options={{ tabBarIcon: ({ focused, color }) => {
-        // You can return any component that you like here!
-        return <Icon name='feedback' size={36} color={color} />;
+      options={{
+        tabBarIcon: ({ focused, color }) => {
+          return <Icon name='feedback' size={36} color={color} />;
         },
       }}
     />
     <Tab.Screen
       name="Planos"
       component={Plans}
-      options={{ tabBarIcon: ({ focused, color }) => {
-        // You can return any component that you like here!
-        return <Icon name='book' size={36} color={color} />;
+      options={{
+        title: 'Planos',
+        tabBarIcon: ({ focused, color }) => {
+          return <Icon name='book' size={36} color={color} />;
         },
       }}
     />
