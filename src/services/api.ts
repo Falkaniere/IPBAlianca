@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://ipbmorungaba.firebaseio.com/'
+  baseURL: 'https://ipbmorungaba-b3618.firebaseio.com/'
 });
 
 export default api;
