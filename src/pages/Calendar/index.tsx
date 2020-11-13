@@ -35,7 +35,7 @@ const Calendar: React.FC = () => {
     <Container>
       <Header children='Agenda'/>
       <ScrollView>
-      <EventsList
+        <EventsList
           data={events}
           keyExtractor={(event) => event.title}
           renderItem={({ item: event }) => (
