@@ -12,6 +12,8 @@ export const OrderList = styled(FlatList as new () => FlatList<Order>)`
   padding: 32px 18px;
 `;
 
-export const OrderContainer = styled.View``;
+export const OrderContainer = styled.View`
+  flex-direction: row;
+`;
 
 export const OrderText = styled.Text``;
