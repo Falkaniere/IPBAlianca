@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../services/api';
-
+import { ScrollView } from 'react-native-gesture-handler';
+import { CheckBox } from 'react-native';
 import { Container, OrderList, OrderContainer, OrderText } from './styles';
 
 import Header from '../../components/Header';
-import { ScrollView } from 'react-native-gesture-handler';
 
 export interface Order {
   reason: string;
@@ -19,8 +19,7 @@ const Calendar: React.FC = () => {
       const dataObj: any = Object.values(response.data);
       setOrder(dataObj);
     })
-  })
-
+  });
 
   return (
     <Container>
@@ -31,6 +30,7 @@ const Calendar: React.FC = () => {
           keyExtractor={(order) => order.reason}
           renderItem={({ item: order }) => (
             <OrderContainer>
+              <CheckBox />
               <OrderText>{order.reason}</OrderText>
             </OrderContainer>
           )}
