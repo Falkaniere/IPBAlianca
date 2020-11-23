@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../services/api';
-import { ScrollView } from 'react-native-gesture-handler';
-import { CheckBox } from 'react-native';
+import CheckBox from '@react-native-community/checkbox';
 import { Container, OrderList, OrderContainer, OrderText } from './styles';
 
 import Header from '../../components/Header';
@@ -18,13 +17,12 @@ const Calendar: React.FC = () => {
     api.get('prayerList.json').then(response => {
       const dataObj: any = Object.values(response.data);
       setOrder(dataObj);
-    })
+    });
   });
 
   return (
     <Container>
       <Header children='Lista de Oração' />
-      <ScrollView>
         <OrderList
           data={order}
           keyExtractor={(order) => order.reason}
@@ -35,7 +33,6 @@ const Calendar: React.FC = () => {
             </OrderContainer>
           )}
         />
-      </ScrollView>
     </Container>
 
   );

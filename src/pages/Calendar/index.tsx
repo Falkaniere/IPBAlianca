@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../services/api';
-import { ScrollView } from 'react-native-gesture-handler';
 
 import {
   Container,
@@ -8,7 +7,7 @@ import {
   EventTitle,
   EventContainer,
   EventDate,
-EventSchedule
+  EventSchedule
 } from './styles';
 import Header from '../../components/Header'
 
@@ -34,7 +33,6 @@ const Calendar: React.FC = () => {
   return (
     <Container>
       <Header children='Agenda'/>
-      <ScrollView>
         <EventsList
           data={events}
           keyExtractor={(event) => event.title}
@@ -46,7 +44,6 @@ const Calendar: React.FC = () => {
             </EventContainer>
           )}
         />
-      </ScrollView>
     </Container>
   );
 }
