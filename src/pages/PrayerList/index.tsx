@@ -22,15 +22,21 @@ const Calendar: React.FC = () => {
       const dataObj: any = Object.values(response.data);
       setOrder(dataObj);
     });
-  });
 
-  const setCheckOnPrayer = useCallback((value: boolean) => {
+    async function loadStoragedData(): Promise<void>{
+      const info = await AsyncStorage.getItem('@IPBMorungaba:reason');
+      console.log(info);
+    }
+    loadStoragedData();
+  },[]);
+
+  const setCheckOnPrayer = useCallback(async(value: boolean) => {
     const time = new Date();
     const reasonChecked: ReasonChecked = {value, time};
-    // JSON.stringify(reasonChecked).toString();
-    AsyncStorage.setItem('@IPBMorungaba:reason', reasonChecked.toString());
+    await AsyncStorage.setItem('@IPBMorungaba:reason', reasonChecked.toString());
     setCheck(reasonChecked);
-  },[])
+    console.log(reasonChecked);
+  },[]);
 
   return (
     <Container>
