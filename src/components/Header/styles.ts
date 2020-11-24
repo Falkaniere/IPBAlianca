@@ -4,7 +4,7 @@ export const Header = styled.View`
   width: 100%;
   padding: 24px;
   flex-direction: row;
-  align-items: flex-start;
+  align-items: center;
 
   border-bottom-width: 1px;
   border-bottom-color: #C2C2C2;

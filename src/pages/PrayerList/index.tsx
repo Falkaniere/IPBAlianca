@@ -1,17 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import AsyncStorage from '@react-native-community/async-storage';
 import api from '../../services/api';
 import CheckBox from '@react-native-community/checkbox';
 import { Container, OrderList, OrderContainer, OrderText } from './styles';
-
 import Header from '../../components/Header';
 
 export interface Order {
   reason: string;
 }
+interface ReasonChecked{
+  value: boolean;
+  time: Date;
+}
 
 const Calendar: React.FC = () => {
-
   const [order, setOrder] = useState<Order[]>([]);
+  const [listCheck, setCheck] = useState<ReasonChecked | null>(null);
 
   useEffect(() => {
     api.get('prayerList.json').then(response => {
@@ -19,6 +23,14 @@ const Calendar: React.FC = () => {
       setOrder(dataObj);
     });
   });
+
+  const setCheckOnPrayer = useCallback((value: boolean) => {
+    const time = new Date();
+    const reasonChecked: ReasonChecked = {value, time};
+    // JSON.stringify(reasonChecked).toString();
+    AsyncStorage.setItem('@IPBMorungaba:reason', reasonChecked.toString());
+    setCheck(reasonChecked);
+  },[])
 
   return (
     <Container>
@@ -28,7 +40,9 @@ const Calendar: React.FC = () => {
           keyExtractor={(order) => order.reason}
           renderItem={({ item: order }) => (
             <OrderContainer>
-              <CheckBox />
+              <CheckBox
+                onValueChange={(value) => setCheckOnPrayer(value)}
+              />
               <OrderText>{order.reason}</OrderText>
             </OrderContainer>
           )}
