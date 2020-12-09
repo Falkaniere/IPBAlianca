@@ -8,8 +8,7 @@ export const Container = styled.View`
   justify-content: center;
 `;
 
-export const OrderList = styled(FlatList as new () => FlatList<Order>)`
-`;
+export const OrderList = styled(FlatList as new () => FlatList<Order>)``;
 
 export const OrderContainer = styled.View`
   padding: 20px;

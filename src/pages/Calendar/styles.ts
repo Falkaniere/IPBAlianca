@@ -8,7 +8,8 @@ export const Container = styled.View`
 `;
 
 export const EventsList = styled(FlatList as new () => FlatList<Event>)`
-  padding: 32px 18px;
+  /* padding: 32px 18px; */
+  margin: 32px 18px 5px;
 `;
 
 export const EventContainer = styled.View`
@@ -16,13 +17,14 @@ export const EventContainer = styled.View`
   border-radius: 10px;
   padding: 20px;
   margin-bottom: 16px;
-  flex-direction: column;
+
+  justify-content: center;
   align-items: center;
+  flex-direction: column;
 `;
 
 export const EventTitle = styled.Text`
   font-family: 'RobotoSlab-Medium';
-  font-weight: 500;
   font-size: 24px;
 `;
 

@@ -7,7 +7,7 @@ export const Header = styled.View`
   align-items: center;
 
   border-bottom-width: 1px;
-  border-bottom-color: #C2C2C2;
+  border-bottom-color: #878787;
 `;
 
 export const HeaderTitle = styled.Text`
