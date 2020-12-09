@@ -1,15 +1,29 @@
 import React from 'react';
-import { createStackNavigator, HeaderTitle } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/MaterialIcons'
 Icon.loadFont();
-
 
 import Calendar from '../pages/Calendar';
 import Church from '../pages/Church';
 import PrayerList from '../pages/PrayerList';
 import Plans from '../pages/Plans';
 import Warning from '../pages/Warning';
+import Liturgy from '../pages/Liturgy';
+
+const Stack = createStackNavigator();
+
+const App: React.FC = () => {
+	return (
+		<Stack.Navigator screenOptions={{
+      headerShown: false,
+    }}>
+      <Stack.Screen name="Church" component={Church}/>
+			<Stack.Screen name="Liturgy" component={Liturgy} />
+		</Stack.Navigator>
+	);
+}
+
 
 const Tab = createBottomTabNavigator();
 
@@ -24,7 +38,7 @@ const AppRoutes: React.FC = () => (
   >
     <Tab.Screen
       name="Igreja"
-      component={Church}
+      component={App}
       options={{
         tabBarIcon: ({ focused, color }) => {
           return <Icon name='home' size={36} color={color} />;
