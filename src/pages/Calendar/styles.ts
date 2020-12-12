@@ -24,17 +24,20 @@ export const EventContainer = styled.View`
 `;
 
 export const EventTitle = styled.Text`
-  font-family: 'RobotoSlab-Medium';
+  font-family: 'RobotoSlab-Normal';
   font-size: 24px;
+  line-height: 28px;
 `;
 
 export const EventDate = styled.Text`
   font-family: 'RobotoSlab-Regular';
   margin-top: 24px;
   font-size: 16px;
+  line-height: 18px;
 `;
 export const EventSchedule = styled.Text`
   font-family: 'RobotoSlab-Regular';
-  margin-top: 8px;
+  margin-top: 13px;
   font-size: 16px;
+  line-height: 18px;
 `;

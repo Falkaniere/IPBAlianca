@@ -64,7 +64,7 @@ const Calendar: React.FC = () => {
 
   return (
     <Container>
-      <Header children='Lista de Oração' />
+      <Header children='Lista de Oração' arrowGoBack={false} />
       <OrderList
         data={order}
         keyExtractor={(order) => order.id}

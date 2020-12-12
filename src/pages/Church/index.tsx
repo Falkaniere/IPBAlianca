@@ -17,7 +17,7 @@ const Calendar: React.FC = () => {
 
   return (
     <Container>
-      <Header children='Igreja' />
+      <Header children='Igreja' arrowGoBack={false} />
       <View>
         <OpenPastoral onPress={() => console.log("ASDASDAS")}>
           <OpenPastoralText>PASTORAL</OpenPastoralText>

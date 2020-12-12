@@ -28,14 +28,14 @@ export const TitleContainer = styled.View`
 export const Title = styled.Text`
   font-family: 'RobotoSlab-Medium';
   font-size: 24px;
-  margin-bottom: 15px;
+  line-height: 28px;
+  margin-bottom: 18px;
 `;
 
 export const WarnText = styled.Text`
   font-family: 'RobotoSlab-Regular';
   margin-top: 8px;
   font-size: 16px;
-
+  line-height: 29px;
   text-align: center;
-
 `;

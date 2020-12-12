@@ -4,7 +4,7 @@ import Header from '../../components/Header';
 
 import { useNavigation } from '@react-navigation/native';
 
-interface liturgy {
+export interface Liturgy {
   id: number,
   text: string,
 }
@@ -17,7 +17,7 @@ import {
 
 const Calendar: React.FC = () => {
   const navigation = useNavigation();
-  const [liturgy, setLiturgy] = useState<liturgy>();
+  const [liturgy, setLiturgy] = useState<Liturgy>();
 
   useEffect(() => {
     const liturgy: any = [

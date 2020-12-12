@@ -44,7 +44,7 @@ const Calendar: React.FC = () => {
 
   return (
     <>
-      <Header children='Avisos' />
+      <Header children='Avisos' arrowGoBack={false} />
         <WarnList
           data={warn}
           keyExtractor={(warn) => warn.id}

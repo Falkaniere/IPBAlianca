@@ -21,7 +21,9 @@ export const OrderContainer = styled.View`
 
 export const OrderText = styled.Text`
   width: 300px;
-  margin-left: 16px;
+  height: 59px;
+  margin-left: 32px;
   font-family: 'RobotoSlab-Medium';
-  font-size: 16px;
+  font-size: 24px;
+  line-height: 28px;
 `;

@@ -1,13 +1,14 @@
 import styled from 'styled-components/native';
 import { FlatList } from 'react-native';
+import { Liturgy } from './index';
 
-export const LiturgyList = styled(FlatList as new () => FlatList<Warn>)`
+export const LiturgyList = styled(FlatList as new () => FlatList<any>)`
   margin: 32px 18px 10px;
 `;
 export const LiturgyContainer = styled.View`
   background: #C2C2C2;
   border-radius: 10px;
-  padding: 20px;
+  padding: 10px;
   margin-bottom: 16px;
 
   align-items: center;
