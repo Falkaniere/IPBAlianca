@@ -12,7 +12,7 @@ interface warns {
   warn: string;
 }
 
-const Calendar: React.FC = () => {
+const Warning: React.FC = () => {
   const [warn, setWarn] = useState<warns>();
 
   useEffect(() => {
@@ -61,4 +61,4 @@ const Calendar: React.FC = () => {
   );
 }
 
-export default Calendar;
+export default Warning;

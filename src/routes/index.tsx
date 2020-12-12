@@ -10,6 +10,7 @@ import PrayerList from '../pages/PrayerList';
 import Plans from '../pages/Plans';
 import Warning from '../pages/Warning';
 import Liturgy from '../pages/Liturgy';
+import Pastoral from '../pages/Pastoral';
 
 const Stack = createStackNavigator();
 
@@ -20,6 +21,7 @@ const App: React.FC = () => {
     }}>
       <Stack.Screen name="Church" component={Church}/>
 			<Stack.Screen name="Liturgy" component={Liturgy} />
+      <Stack.Screen name="Pastoral" component={Pastoral} />
 		</Stack.Navigator>
 	);
 }

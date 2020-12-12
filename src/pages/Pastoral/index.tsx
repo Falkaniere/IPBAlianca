@@ -4,46 +4,46 @@ import Header from '../../components/Header';
 
 import { useNavigation } from '@react-navigation/native';
 
-export interface Liturgy {
+export interface Pastoral {
   id: number,
   text: string,
 }
 
 import {
-  LiturgyList,
-  LiturgyContainer,
-  LiturgyText
+  PastoralList,
+  PastoralContainer,
+  PastoralText
 } from './styles';
 
-const Liturgy: React.FC = () => {
+const Pastoral: React.FC = () => {
   const navigation = useNavigation();
-  const [liturgy, setLiturgy] = useState<Liturgy>();
+  const [pastoral, setpastoral] = useState<Pastoral>();
 
   useEffect(() => {
-    const liturgy: any = [
+    const pastoral: any = [
       {
         id: 1,
         text: 'Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Ciceros De Finibus Bonorum et Malorum for use in a type specimen book. It usually begins with: Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Ciceros De Finibus Bonorum et Malorum for use in a type specimen book. It usually begins withLorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Ciceros De Finibus Bonorum et Malorum for use in a type specimen book. It usually begins withLorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Ciceros De Finibus Bonorum et Malorum for use in a type specimen book. It usually begins withLorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Ciceros De Finibus Bonorum et Malorum for use in a type specimen book. It usually begins withLorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Ciceros De Finibus Bonorum et Malorum for use in a type specimen book. It usually begins with'
       },
     ];
 
-    setLiturgy(liturgy)
+    setpastoral(pastoral)
   },[])
 
   return (
 <>
-      <Header children='Liturgia' arrowGoBack={true}/>
-        <LiturgyList
-          data={liturgy}
-          keyExtractor={(liturgy) => liturgy.id}
-          renderItem={({ item: liturgy }) => (
-            <LiturgyContainer>
-              <LiturgyText>{liturgy.text}</LiturgyText>
-            </LiturgyContainer>
+      <Header children='Pastoral' arrowGoBack={true}/>
+        <PastoralList
+          data={pastoral}
+          keyExtractor={(pastoral) => pastoral.id}
+          renderItem={({ item: pastoral }) => (
+            <PastoralContainer>
+              <PastoralText>{pastoral.text}</PastoralText>
+            </PastoralContainer>
           )}
         />
     </>
   );
 }
 
-export default Liturgy;
+export default Pastoral;

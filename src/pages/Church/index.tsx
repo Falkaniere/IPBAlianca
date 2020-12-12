@@ -12,14 +12,14 @@ import {
   OpenPastoralText,
 } from './styles';
 
-const Calendar: React.FC = () => {
+const Church: React.FC = () => {
   const navigation = useNavigation();
 
   return (
     <Container>
       <Header children='Igreja' arrowGoBack={false} />
       <View>
-        <OpenPastoral onPress={() => console.log("ASDASDAS")}>
+        <OpenPastoral onPress={() => navigation.navigate('Pastoral')}>
           <OpenPastoralText>PASTORAL</OpenPastoralText>
         </OpenPastoral>
         <OpenLiturgy onPress={() => navigation.navigate('Liturgy')}>
@@ -31,4 +31,4 @@ const Calendar: React.FC = () => {
   );
 }
 
-export default Calendar;
+export default Church;
