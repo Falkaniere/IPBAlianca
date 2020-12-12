@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import Header from '../../components/Header';
 
 import { useNavigation } from '@react-navigation/native';
@@ -19,7 +19,7 @@ const Calendar: React.FC = () => {
     <Container>
       <Header children='Igreja' />
       <View>
-        <OpenPastoral onPress={() => navigation.navigate('Liturgy')}>
+        <OpenPastoral onPress={() => console.log("ASDASDAS")}>
           <OpenPastoralText>PASTORAL</OpenPastoralText>
         </OpenPastoral>
         <OpenLiturgy onPress={() => navigation.navigate('Liturgy')}>
