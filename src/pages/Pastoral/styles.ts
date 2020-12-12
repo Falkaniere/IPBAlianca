@@ -3,7 +3,7 @@ import { FlatList } from 'react-native';
 import { Pastoral } from './index';
 
 export const PastoralList = styled(FlatList as new () => FlatList<any>)`
-  margin: 32px 18px 10px;
+  margin: 10px 18px 10px;
 `;
 export const PastoralContainer = styled.View`
   background: #C2C2C2;
