@@ -3,7 +3,7 @@ import { FlatList } from 'react-native';
 import { Liturgy } from './index';
 
 export const LiturgyList = styled(FlatList as new () => FlatList<any>)`
-  margin: 10px 18px 10px;
+  margin: 10px 18px 5px;
 `;
 export const LiturgyContainer = styled.View`
   background: #C2C2C2;
