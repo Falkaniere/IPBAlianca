@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 
 import { Container } from './styles';
 
-const Calendar: React.FC = () => {
+const SignUp: React.FC = () => {
   return (
     <Container>
       <View>
@@ -13,4 +13,4 @@ const Calendar: React.FC = () => {
   );
 }
 
-export default Calendar;
+export default SignUp;

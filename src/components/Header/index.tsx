@@ -10,7 +10,6 @@ interface HeaderProps extends RectButtonProperties {
 import { Header, HeaderTitle, IconBack } from './styles';
 
 const HeaderApp: React.FC<HeaderProps> = ({ children, arrowGoBack, ...rest }) => {
-
   const navigation = useNavigation();
 
   return (

@@ -15,7 +15,7 @@ interface ReasonChecked{
   time: Date;
 }
 
-const Calendar: React.FC = () => {
+const PrayerList: React.FC = () => {
   const [order, setOrder] = useState([]);
   const [listCheck, setCheck] = useState<ReasonChecked | null>(null);
 
@@ -64,7 +64,7 @@ const Calendar: React.FC = () => {
 
   return (
     <Container>
-      <Header children='Lista de Oração' />
+      <Header children='Lista de Oração' arrowGoBack={false} />
       <OrderList
         data={order}
         keyExtractor={(order) => order.id}
@@ -81,4 +81,4 @@ const Calendar: React.FC = () => {
   );
 }
 
-export default Calendar;
+export default PrayerList;
