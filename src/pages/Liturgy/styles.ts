@@ -1,6 +1,5 @@
 import styled from 'styled-components/native';
 import { FlatList } from 'react-native';
-import { Liturgy } from './index';
 
 export const LiturgyList = styled(FlatList as new () => FlatList<any>)`
   margin: 10px 18px 5px;
