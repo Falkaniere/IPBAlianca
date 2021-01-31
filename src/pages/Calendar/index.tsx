@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../services/api';
+import firestone from '@react-native-firebase/firestore';
 
 import {
   Container,
@@ -23,8 +24,12 @@ export interface Event {
 const Calendar: React.FC = () => {
 
   const [events, setEvents] = useState<Event[]>([]);
-
   useEffect(() => {
+
+    const allEvents = firestone().collection('events').get();
+
+    console.log(allEvents);
+
     const events: any = [
       {
         id: 1,
