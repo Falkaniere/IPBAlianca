@@ -25,8 +25,7 @@ const Calendar: React.FC = () => {
   const [events, setEvents] = useState<Event[]>([]);
   useEffect(() => {
 
-    const allEvents = firestone().collection('events').get();
-
+    const allEvents = api.get('/events')
     console.log(allEvents);
 
     const events: any = [
