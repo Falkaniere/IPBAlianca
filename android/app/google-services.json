@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "359187868995",
+    "project_id": "appipbmorungaba",
+    "storage_bucket": "appipbmorungaba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:359187868995:android:4febedfc6b6f639ca813f6",
+        "android_client_info": {
+          "package_name": "com.ipbmorungaba"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "359187868995-2125vpsca6olu7kvs8lts3g4n0hmokbo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDexuK5aizah52dFDLCdYgg9HhnQ9ywKZM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "359187868995-2125vpsca6olu7kvs8lts3g4n0hmokbo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

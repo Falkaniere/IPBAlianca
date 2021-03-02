@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../services/api';
+import firestore from '@react-native-firebase/firestore';
+import dayjs from 'dayjs';
 
 import {
   Container,
@@ -11,11 +13,12 @@ import {
 } from './styles';
 import Header from '../../components/Header'
 import { ScrollView } from 'react-native-gesture-handler';
+import { LiturgyList } from '../Liturgy/styles';
 
 export interface Event {
-  id: number;
+  id: string;
   date: string;
-  details: string;
+  description: string;
   schedule: string;
   title: string;
 }
@@ -23,46 +26,29 @@ export interface Event {
 const Calendar: React.FC = () => {
 
   const [events, setEvents] = useState<Event[]>([]);
+
+  const getAllEvents: any = () => {
+    firestore()
+      .collection('events')
+      .get()
+      .then((querySnapshot) => {
+        const Listevent: any = [];
+        querySnapshot.forEach((response) => {
+          const event: Event = {
+            id: response.id,
+            date: response.data().date,
+            description: response.data().description,
+            schedule: response.data().schedule,
+            title: response.data().title,
+          };
+          Listevent.push(event);
+        });
+        setEvents(Listevent)
+      });
+  }
+
   useEffect(() => {
-
-    const allEvents = api.get('/events')
-    console.log(allEvents);
-
-    const events: any = [
-      {
-        id: 1,
-        title: 'Santa Ceita',
-        date: '11/12/2020',
-        schedule: '19:00',
-      },
-      {
-        id: 2,
-        title: 'Culto para crianças',
-        date: '11/12/2020',
-        schedule: '19:00',
-      },
-      {
-        id: 3,
-        title: 'Páscoa 221',
-        date: '11/12/2020',
-        schedule: '19:00',
-      },
-      {
-        id: 4,
-        title: 'TESTE TESTE',
-        date: '11/12/2020',
-        schedule: '19:00',
-      },
-      {
-        id: 5,
-        title: 'TESTE TESTE TESTE',
-        date: '11/12/2020',
-        schedule: '19:00',
-      }
-    ];
-
-    setEvents(events);
-
+    getAllEvents();
   }, []);
 
   return (
