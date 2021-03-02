@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
-import { ScrollView } from 'react-native-gesture-handler';
 
-import api from '../../services/api';
 import CheckBox from '@react-native-community/checkbox';
 import { Container, OrderList, OrderContainer, OrderText } from './styles';
 import Header from '../../components/Header';
