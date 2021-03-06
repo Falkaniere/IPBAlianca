@@ -2,44 +2,41 @@ import React, { useEffect, useState } from 'react';
 import { Text, View } from 'react-native';
 import Header from '../../components/Header';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import firestore from '@react-native-firebase/firestore';
 
 
 import { Container, WarnContainer, WarnList, WarnText, TitleContainer, Title } from './styles';
 
-interface warns {
-  id: number;
+interface Warn {
+  id: string;
   title: string;
-  warn: string;
+  text: string;
 }
 
 const Warning: React.FC = () => {
-  const [warn, setWarn] = useState<warns>();
+  const [warn, setWarn] = useState<Warn>();
+
+  const getWarns = () => {
+    firestore()
+      .collection('warns')
+      .get()
+      .then((warns) => {
+        const arrOfWarns: any = [];
+        warns.forEach((warn) => {
+          const getOneWarn: Warn = {
+            id: warn.id,
+            title: warn.data().title,
+            text: warn.data().text,
+          };
+          console.log(getOneWarn);
+          arrOfWarns.push(getOneWarn);
+        });
+        setWarn(arrOfWarns);
+      });
+  }
 
   useEffect(() => {
-    const warnings: any = [
-      {
-        id: 1,
-        title: 'AVISO 1',
-        warn: 'Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Ciceros De Finibus Bonorum et Malorum for use in a type specimen book. It usually begins with:'
-      },
-      {
-        id: 2,
-        title: 'AVISO 2',
-        warn: 'Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Ciceros De Finibus Bonorum et Malorum for use in a type specimen book. It usually begins with:'
-      },
-      {
-        id: 3,
-        title: 'AVISO 3',
-        warn: 'Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Ciceros De Finibus Bonorum et Malorum for use in a type specimen book. It usually begins with:'
-      },
-      {
-        id: 4,
-        title: 'AVISO 4',
-        warn: 'Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Ciceros De Finibus Bonorum et Malorum for use in a type specimen book. It usually begins with:'
-      }
-    ];
-
-    setWarn(warnings)
+    getWarns();
   },[])
 
   return (
@@ -53,7 +50,7 @@ const Warning: React.FC = () => {
               <TitleContainer>
                 <Title>{warn.title}</Title>
               </TitleContainer>
-              <WarnText>{warn.warn}</WarnText>
+              <WarnText>{warn.text}</WarnText>
             </WarnContainer>
           )}
         />

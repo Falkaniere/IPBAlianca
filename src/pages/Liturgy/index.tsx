@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { View } from 'react-native';
 import Header from '../../components/Header';
+import firestore from '@react-native-firebase/firestore';
 
 import { useNavigation } from '@react-navigation/native';
 
 export interface Liturgy {
-  id: number,
+  id: string,
   text: string,
 }
 
@@ -19,15 +19,25 @@ const Liturgy: React.FC = () => {
   const navigation = useNavigation();
   const [liturgy, setLiturgy] = useState<Liturgy>();
 
-  useEffect(() => {
-    const liturgy: any = [
-      {
-        id: 1,
-        text: 'Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Ciceros De Finibus Bonorum et Malorum for use in a type specimen book. It usually begins with: Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Ciceros De Finibus Bonorum et Malorum for use in a type specimen book. It usually begins withLorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Ciceros De Finibus Bonorum et Malorum for use in a type specimen book. It usually begins withLorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Ciceros De Finibus Bonorum et Malorum for use in a type specimen book. It usually begins withLorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Ciceros De Finibus Bonorum et Malorum for use in a type specimen book. It usually begins withLorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Ciceros De Finibus Bonorum et Malorum for use in a type specimen book. It usually begins with'
-      },
-    ];
+  const getLiturgy = () => {
+    firestore()
+      .collection('liturgy')
+      .get()
+      .then((querySnapshot) => {
+        const arrOfLiturgy: any = [];
+        querySnapshot.forEach((response) => {
+          const getOneLiturgy: Liturgy = {
+            id: response.id,
+            text: response.data().text,
+          };
+          arrOfLiturgy.push(getOneLiturgy);
+        });
+        setLiturgy(arrOfLiturgy);
+      });
+  }
 
-    setLiturgy(liturgy)
+  useEffect(() => {
+    getLiturgy();
   },[])
 
   return (
