@@ -1,10 +1,10 @@
 import styled from 'styled-components/native';
 import { FlatList } from 'react-native';
-import Warn from './index';
+import { Warn } from './index';
 
 export const Container = styled.View``;
 
-export const WarnList = styled(FlatList as new () => FlatList<  >)`
+export const WarnList = styled(FlatList as new () => FlatList<Warn>)`
   margin: 32px 18px 10px;
 `;
 

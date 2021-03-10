@@ -11,13 +11,14 @@ export interface Warn {
 }
 
 const Warning: React.FC = () => {
-  const [warn, setWarn] = useState<Warn>();
+  const [warn, setWarn] = useState<Warn[]>([]);
 
   const getWarns = () => {
     firestore()
       .collection('warns')
       .get()
       .then((warns) => {
+        console.log('warrnss aquiii', warns)
         const arrOfWarns: any = [];
         warns.forEach((warn) => {
           const getOneWarn: Warn = {
