@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import api from '../../services/api';
 import firestore from '@react-native-firebase/firestore';
-import dayjs from 'dayjs';
 
 import {
   Container,
@@ -12,8 +10,6 @@ import {
   EventSchedule
 } from './styles';
 import Header from '../../components/Header'
-import { ScrollView } from 'react-native-gesture-handler';
-import { LiturgyList } from '../Liturgy/styles';
 
 export interface Event {
   id: string;

@@ -1,63 +1,57 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
+import firestore from '@react-native-firebase/firestore';
+import dayjs, { Dayjs } from 'dayjs';
 
 import CheckBox from '@react-native-community/checkbox';
 import { Container, OrderList, OrderContainer, OrderText } from './styles';
 import Header from '../../components/Header';
 
-// export interface Order {
-//   reason: string;
-// }
+export interface Order {
+  id: string;
+  reason: string;
+}
 interface ReasonChecked{
   value: boolean;
-  time: Date;
+  time: Dayjs;
 }
 
 const PrayerList: React.FC = () => {
-  const [order, setOrder] = useState([]);
-  const [listCheck, setCheck] = useState<ReasonChecked | null>(null);
+  const [order, setOrder] = useState<Order[]>([]);
+  const [listCheck, setCheck] = useState<ReasonChecked>();
+
+  const verifyIfIsAnotherDay = useCallback(() => {
+    if(listCheck?.time.isBefore(dayjs())){
+      setCheckOnPrayer(false);
+    }
+  }, []);
 
   useEffect(() => {
-    const reasonsForPrayes: any = [
-      {
-        id: 1,
-        title: 'teste de pedido de oração para app morungaba'
-      },
-      {
-        id: 2,
-        title: 'teste de pedido de oração para app morungaba'
-      },
-      {
-        id: 3,
-        title: 'teste de pedido de oração para app morungaba'
-      },
-      {
-        id: 4,
-        title: 'teste de pedido de oração para app morungaba'
-      }
-    ];
+    firestore()
+    .collection('orders')
+    .get()
+    .then((orders) => {
+      const arrOfOrders: any = [];
+      orders.forEach((order) => {
+        const oneOrder: Order = {
+          id: order.id,
+          reason: order.data().title,
+        }
+        arrOfOrders.push(oneOrder);
+      });
+      setOrder(arrOfOrders);
+    })
 
-
-    setOrder(reasonsForPrayes);
-
-    // api.get('prayerList.json').then(response => {
-    //   const dataObj: any = Object.values(response.data);
-    //   setOrder(dataObj);
-    // });
-
-    // async function loadStoragedData(): Promise<void>{
-    //   const info = await AsyncStorage.getItem('@IPBMorungaba:reason');
-    //   console.log(info);
-    // }
-    // loadStoragedData();
+    verifyIfIsAnotherDay();
   },[]);
 
   const setCheckOnPrayer = useCallback(async(value: boolean) => {
-    const time = new Date();
-    const reasonChecked: ReasonChecked = {value, time};
-    await AsyncStorage.setItem('@IPBMorungaba:reason', reasonChecked.toString());
-    setCheck(reasonChecked);
-    console.log(reasonChecked);
+    if(value){
+      const time = dayjs();
+      const reasonChecked: ReasonChecked = {value, time};
+      await AsyncStorage.setItem('@IPBMorungaba:reason', reasonChecked.toString());
+      setCheck(reasonChecked);
+    }
   },[]);
 
   return (
@@ -71,7 +65,7 @@ const PrayerList: React.FC = () => {
             <CheckBox
               onValueChange={(value) => setCheckOnPrayer(value)}
             />
-            <OrderText>{order.title}</OrderText>
+            <OrderText>{order.reason}</OrderText>
           </OrderContainer>
         )}
       />

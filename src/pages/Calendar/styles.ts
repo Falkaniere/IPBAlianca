@@ -1,6 +1,5 @@
 import { FlatList } from 'react-native';
 import styled from 'styled-components/native';
-
 import { Event } from './index';
 
 export const Container = styled.View`

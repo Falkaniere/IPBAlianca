@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { View } from 'react-native';
 import Header from '../../components/Header';
+import firestore from '@react-native-firebase/firestore'
 
 import { useNavigation } from '@react-navigation/native';
 
 export interface Pastoral {
-  id: number,
+  id: string,
   text: string,
 }
 
@@ -14,35 +14,36 @@ import {
   PastoralContainer,
   PastoralText
 } from './styles';
+import { ScrollView } from 'react-native-gesture-handler';
 
 const Pastoral: React.FC = () => {
   const navigation = useNavigation();
-  const [pastoral, setpastoral] = useState<Pastoral>();
+  const [pastoral, setPastoral] = useState<Pastoral | null>();
 
   useEffect(() => {
-    const pastoral: any = [
-      {
-        id: 1,
-        text: 'Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Ciceros De Finibus Bonorum et Malorum for use in a type specimen book. It usually begins with: Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Ciceros De Finibus Bonorum et Malorum for use in a type specimen book. It usually begins withLorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Ciceros De Finibus Bonorum et Malorum for use in a type specimen book. It usually begins withLorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Ciceros De Finibus Bonorum et Malorum for use in a type specimen book. It usually begins withLorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Ciceros De Finibus Bonorum et Malorum for use in a type specimen book. It usually begins withLorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Ciceros De Finibus Bonorum et Malorum for use in a type specimen book. It usually begins with'
-      },
-    ];
+    firestore()
+    .collection('pastoral')
+    .get()
+    .then((pastoral) => {
+      const insertPastoral = {
+        id: pastoral.docs[0].id,
+        text: pastoral.docs[0].data().text
+      }
+      setPastoral(insertPastoral);
+    })
 
-    setpastoral(pastoral)
-  },[])
+    console.log(pastoral)
+  },[]);
 
   return (
-<>
+    <ScrollView>
       <Header children='Pastoral' arrowGoBack={true}/>
-        <PastoralList
-          data={pastoral}
-          keyExtractor={(pastoral) => pastoral.id}
-          renderItem={({ item: pastoral }) => (
-            <PastoralContainer>
-              <PastoralText>{pastoral.text}</PastoralText>
-            </PastoralContainer>
-          )}
-        />
-    </>
+        <PastoralList >
+          <PastoralContainer>
+            <PastoralText>{pastoral?.text}</PastoralText>
+          </PastoralContainer>
+        </PastoralList>
+    </ ScrollView>
   );
 }
 

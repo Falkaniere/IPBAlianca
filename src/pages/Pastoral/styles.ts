@@ -1,8 +1,7 @@
 import styled from 'styled-components/native';
 import { FlatList } from 'react-native';
-import { Pastoral } from './index';
 
-export const PastoralList = styled(FlatList as new () => FlatList<any>)`
+export const PastoralList = styled.View`
   margin: 10px 18px 5px;
 `;
 export const PastoralContainer = styled.View`

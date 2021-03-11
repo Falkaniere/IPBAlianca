@@ -18,7 +18,6 @@ const Warning: React.FC = () => {
       .collection('warns')
       .get()
       .then((warns) => {
-        console.log('warrnss aquiii', warns)
         const arrOfWarns: any = [];
         warns.forEach((warn) => {
           const getOneWarn: Warn = {

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Header from '../../components/Header';
 import firestore from '@react-native-firebase/firestore';
 
-import { useNavigation } from '@react-navigation/native';
 
 export interface Liturgy {
   id: string,
@@ -16,7 +15,6 @@ import {
 } from './styles';
 
 const Liturgy: React.FC = () => {
-  const navigation = useNavigation();
   const [liturgy, setLiturgy] = useState<Liturgy>();
 
   const getLiturgy = () => {
