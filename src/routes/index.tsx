@@ -7,7 +7,7 @@ Icon.loadFont();
 import Calendar from '../pages/Calendar';
 import Church from '../pages/Church';
 import PrayerList from '../pages/PrayerList';
-import Plans from '../pages/Plans';
+import Login from '../pages/Login';
 import Warning from '../pages/Warning';
 import Liturgy from '../pages/Liturgy';
 import Pastoral from '../pages/Pastoral';
@@ -75,12 +75,12 @@ const AppRoutes: React.FC = () => (
       }}
     />
     <Tab.Screen
-      name="Planos"
-      component={Plans}
+      name="Login"
+      component={Login}
       options={{
-        title: 'Planos',
+        title: 'Login',
         tabBarIcon: ({ focused, color }) => {
-          return <Icon name='book' size={36} color={color} />;
+          return <Icon name='person' size={36} color={color} />;
         },
       }}
     />

@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import AsyncStorage from '@react-native-community/async-storage';
 import firestore from '@react-native-firebase/firestore';
 import dayjs, { Dayjs } from 'dayjs';
 
@@ -10,21 +9,16 @@ import Header from '../../components/Header';
 export interface Order {
   id: string;
   reason: string;
+  isCheck: boolean;
+  updatedAt: Date;
 }
 interface ReasonChecked{
   value: boolean;
-  time: Dayjs;
 }
 
 const PrayerList: React.FC = () => {
-  const [order, setOrder] = useState<Order[]>([]);
-  const [listCheck, setCheck] = useState<ReasonChecked>();
-
-  const verifyIfIsAnotherDay = useCallback(() => {
-    if(listCheck?.time.isBefore(dayjs())){
-      setCheckOnPrayer(false);
-    }
-  }, []);
+  const [orders, setOrder] = useState<Order[]>([]);
+  const [listCheck, setCheck] = useState<ReasonChecked | boolean >();
 
   useEffect(() => {
     firestore()
@@ -36,6 +30,8 @@ const PrayerList: React.FC = () => {
         const oneOrder: Order = {
           id: order.id,
           reason: order.data().title,
+          isCheck: order.data().isCheck,
+          updatedAt: order.data().updatedAt,
         }
         arrOfOrders.push(oneOrder);
       });
@@ -45,25 +41,44 @@ const PrayerList: React.FC = () => {
     verifyIfIsAnotherDay();
   },[]);
 
-  const setCheckOnPrayer = useCallback(async(value: boolean) => {
-    if(value){
-      const time = dayjs();
-      const reasonChecked: ReasonChecked = {value, time};
-      await AsyncStorage.setItem('@IPBMorungaba:reason', reasonChecked.toString());
-      setCheck(reasonChecked);
-    }
-  },[]);
+  const verifyIfIsAnotherDay = () => {
+    orders.forEach((order) => {
+      // if(dayjs().isBefore(order.updatedAt)){
+      const actuallyDate = new Date()
+      if(order.updatedAt < actuallyDate){
+        firestore()
+        .collection('orders')
+        .doc(order.id)
+        .update({
+          isCheck: false,
+        })
+        .then(() => console.log('atualizado o check!'))
+      }
+    })
+  };
+
+  const setCheckOnPrayer = (value: boolean, orderId: string) => {
+    firestore()
+    .collection('orders')
+    .doc(orderId)
+    .update({
+      isCheck: true,
+      updateAt: new Date(),
+    })
+    .then(() => console.log('atualizado!'))
+  };
 
   return (
     <Container>
       <Header children='Lista de Oração' arrowGoBack={false} />
       <OrderList
-        data={order}
+        data={orders}
         keyExtractor={(order) => order.id}
         renderItem={({ item: order }) => (
           <OrderContainer>
             <CheckBox
-              onValueChange={(value) => setCheckOnPrayer(value)}
+              value={order.isCheck}
+              onValueChange={(value) => setCheckOnPrayer(value, order.id)}
             />
             <OrderText>{order.reason}</OrderText>
           </OrderContainer>

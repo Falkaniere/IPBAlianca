@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../../components/Header';
 import firestore from '@react-native-firebase/firestore';
-
-
-export interface Liturgy {
-  id: string,
-  text: string,
-}
+import { ScrollView } from 'react-native-gesture-handler';
 
 import {
   LiturgyList,
   LiturgyContainer,
-  LiturgyText
+  LiturgyTitle
 } from './styles';
+
+export interface Liturgy {
+  id: string,
+  title: string,
+  song: string;
+  letterSong: string;
+  bibleText: string;
+}
 
 const Liturgy: React.FC = () => {
   const [liturgy, setLiturgy] = useState<Liturgy>();
@@ -21,16 +24,15 @@ const Liturgy: React.FC = () => {
     firestore()
       .collection('liturgy')
       .get()
-      .then((querySnapshot) => {
-        const arrOfLiturgy: any = [];
-        querySnapshot.forEach((response) => {
-          const getOneLiturgy: Liturgy = {
-            id: response.id,
-            text: response.data().text,
-          };
-          arrOfLiturgy.push(getOneLiturgy);
-        });
-        setLiturgy(arrOfLiturgy);
+      .then((liturgy) => {
+        const liturgyObject: Liturgy = {
+          id: liturgy.docs[0].id,
+          title: liturgy.docs[0].data().title,
+          bibleText: liturgy.docs[0].data().bibleText,
+          song: liturgy.docs[0].data().song,
+          letterSong: liturgy.docs[0].data().letterSong,
+        }
+        setLiturgy(liturgyObject);
       });
   }
 
@@ -39,18 +41,14 @@ const Liturgy: React.FC = () => {
   },[])
 
   return (
-<>
+    <ScrollView>
       <Header children='Liturgia' arrowGoBack={true}/>
-        <LiturgyList
-          data={liturgy}
-          keyExtractor={(liturgy) => liturgy.id}
-          renderItem={({ item: liturgy }) => (
-            <LiturgyContainer>
-              <LiturgyText>{liturgy.text}</LiturgyText>
-            </LiturgyContainer>
-          )}
-        />
-    </>
+      <LiturgyList>
+        <LiturgyContainer>
+          <LiturgyTitle>{liturgy?.title}</LiturgyTitle>
+        </LiturgyContainer>
+      </LiturgyList>
+    </ScrollView>
   );
 }
 

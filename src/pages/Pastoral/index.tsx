@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../../components/Header';
 import firestore from '@react-native-firebase/firestore'
-
 import { useNavigation } from '@react-navigation/native';
-
-export interface Pastoral {
-  id: string,
-  text: string,
-}
+import { ScrollView } from 'react-native-gesture-handler';
 
 import {
   PastoralList,
   PastoralContainer,
+  PastoralTitle,
+  PastoralSubtitle,
   PastoralText
 } from './styles';
-import { ScrollView } from 'react-native-gesture-handler';
+
+interface Pastoral {
+  id: string,
+  title: string,
+  subtitle: string,
+  text: string,
+}
 
 const Pastoral: React.FC = () => {
   const navigation = useNavigation();
@@ -25,8 +28,10 @@ const Pastoral: React.FC = () => {
     .collection('pastoral')
     .get()
     .then((pastoral) => {
-      const insertPastoral = {
+      const insertPastoral: Pastoral = {
         id: pastoral.docs[0].id,
+        title: pastoral.docs[0].data().title,
+        subtitle: pastoral.docs[0].data().subtitle,
         text: pastoral.docs[0].data().text
       }
       setPastoral(insertPastoral);
@@ -40,6 +45,8 @@ const Pastoral: React.FC = () => {
       <Header children='Pastoral' arrowGoBack={true}/>
         <PastoralList >
           <PastoralContainer>
+            <PastoralTitle>{pastoral?.title}</PastoralTitle>
+            <PastoralSubtitle>{pastoral?.subtitle}</PastoralSubtitle>
             <PastoralText>{pastoral?.text}</PastoralText>
           </PastoralContainer>
         </PastoralList>

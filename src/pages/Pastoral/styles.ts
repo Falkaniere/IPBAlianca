@@ -12,10 +12,23 @@ export const PastoralContainer = styled.View`
 
   align-items: center;
 `;
+
+export const PastoralTitle = styled.Text`
+  font-family: 'RobotoSlab-Medium';
+  font-size: 24px;
+  margin-bottom: 8px;
+`;
+
+export const PastoralSubtitle = styled.Text`
+  font-family: 'RobotoSlab-Regular';
+  font-size: 16px;
+  margin-bottom: 12px;
+`;
+
 export const PastoralText = styled.Text`
   font-family: 'RobotoSlab-Regular';
   margin-top: 8px;
   font-size: 18px;
-
+  line-height: 24px;
   text-align: center;
 `;
