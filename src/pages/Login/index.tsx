@@ -1,13 +1,21 @@
 import React from 'react';
-import { View } from 'react-native';
-import Button from '../../components/Button/index';
-
-// import { Container } from './styles';
+import { Image } from 'react-native';
+import { Container, LoginText } from './styles';
+import ButtonGoogle from '../../components/Button/index'
+import logoImg from '../../assets/logo.png'
 
 const Login: React.FC = () => {
+
   return (
     <>
-      <Button>Login com Google</Button>
+      <Container>
+        <Image source={logoImg} width={50} />
+        <LoginText>Faca seu Login</LoginText>
+        <ButtonGoogle onPress={() => {console.log('dDEDEDEUEUEUUE')}}
+          icon='google'>
+            Login com Google
+        </ButtonGoogle>
+      </Container>
     </>
   )
 }
