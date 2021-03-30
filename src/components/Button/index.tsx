@@ -9,9 +9,10 @@ interface ButtonProps extends RectButtonProperties {
 }
 
 const Button: React.FC<ButtonProps> = ({ icon, children, ...rest }) => (
-  <Container {...rest} >
+  <Container>
     <IconButton name={icon} size={28}  color="#FFF" />
-    <ButtonText>{children}</ButtonText>
+    {/* @ts-ignore */}
+    <ButtonText {...rest} >{children}</ButtonText>
   </Container>
 );
 

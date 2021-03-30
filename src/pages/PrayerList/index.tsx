@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import firestore from '@react-native-firebase/firestore';
-import dayjs, { Dayjs } from 'dayjs';
+import dayjs from 'dayjs';
 
 import CheckBox from '@react-native-community/checkbox';
 import { Container, OrderList, OrderContainer, OrderText } from './styles';
@@ -12,13 +12,9 @@ export interface Order {
   isCheck: boolean;
   updatedAt: Date;
 }
-interface ReasonChecked{
-  value: boolean;
-}
 
 const PrayerList: React.FC = () => {
   const [orders, setOrder] = useState<Order[]>([]);
-  const [listCheck, setCheck] = useState<ReasonChecked | boolean >();
 
   useEffect(() => {
     firestore()
@@ -43,16 +39,13 @@ const PrayerList: React.FC = () => {
 
   const verifyIfIsAnotherDay = () => {
     orders.forEach((order) => {
-      // if(dayjs().isBefore(order.updatedAt)){
-      const actuallyDate = new Date()
-      if(order.updatedAt < actuallyDate){
+      if(dayjs().isBefore(dayjs(order.updatedAt))){
         firestore()
         .collection('orders')
         .doc(order.id)
         .update({
           isCheck: false,
         })
-        .then(() => console.log('atualizado o check!'))
       }
     })
   };
@@ -65,7 +58,6 @@ const PrayerList: React.FC = () => {
       isCheck: true,
       updateAt: new Date(),
     })
-    .then(() => console.log('atualizado!'))
   };
 
   return (
@@ -79,6 +71,7 @@ const PrayerList: React.FC = () => {
             <CheckBox
               value={order.isCheck}
               onValueChange={(value) => setCheckOnPrayer(value, order.id)}
+              disabled={order.isCheck ? true : false}
             />
             <OrderText>{order.reason}</OrderText>
           </OrderContainer>
