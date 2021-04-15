@@ -11,6 +11,7 @@ import Login from '../pages/Login';
 import Warning from '../pages/Warning';
 import Liturgy from '../pages/Liturgy';
 import Pastoral from '../pages/Pastoral';
+import Profile from '../pages/Profile';
 
 const Stack = createStackNavigator();
 

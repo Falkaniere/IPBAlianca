@@ -13,25 +13,27 @@ export interface Warn {
 const Warning: React.FC = () => {
   const [warn, setWarn] = useState<Warn[]>([]);
 
-  const getWarns = () => {
-    firestore()
-      .collection('warns')
-      .get()
-      .then((warns) => {
-        const arrOfWarns: any = [];
-        warns.forEach((warn) => {
-          const getOneWarn: Warn = {
-            id: warn.id,
-            title: warn.data().title,
-            text: warn.data().text,
-          };
-          arrOfWarns.push(getOneWarn);
-        });
-        setWarn(arrOfWarns);
-      });
-  }
 
   useEffect(() => {
+    const getWarns = () => {
+      firestore()
+        .collection('warns')
+        .get()
+        .then((warns) => {
+          const arrOfWarns: any = [];
+          warns.forEach((warn) => {
+            const getOneWarn: Warn = {
+              id: warn.id,
+              title: warn.data().title,
+              text: warn.data().text,
+            };
+            arrOfWarns.push(getOneWarn);
+          });
+          setWarn(arrOfWarns);
+        });
+    }
+
+
     getWarns();
   },[])
 

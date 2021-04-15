@@ -14,11 +14,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "359187868995-shpsb4dtj27jetmj60qofdj5q4o9qig4.apps.googleusercontent.com",
+          "client_id": "359187868995-qcfq4db90io2gg6mbue6h2d2mo6diecs.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.ipbmorungaba",
-            "certificate_hash": "34d3b9710c1ae0631c617c537bb3828f4a2fd8e7"
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
           }
         },
         {
