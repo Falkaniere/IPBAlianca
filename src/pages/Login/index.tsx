@@ -1,10 +1,5 @@
-import React, { useEffect, useState, useCallback} from 'react';
+import React from 'react';
 import { ActivityIndicator, Image, View } from 'react-native';
-import { GoogleSignin } from '@react-native-community/google-signin';
-import { WEB_CLIENT_ID } from '../../utils/keys';
-import { StyleSheet } from 'react-native';
-import { firebase } from '@react-native-firebase/firestore';
-
 import logoImg from '../../assets/logo.png';
 import ButtonGoogle from '../../components/Button/index';
 import { Container, LoginText } from './styles';
@@ -12,17 +7,6 @@ import { useAuth } from '../../hooks/auth';
 
 const Login: React.FC = () => {
   const { loginWithGoogle, loading } = useAuth();
-
-  useEffect(() => {
-    const configureGoogleSignIn = () => {
-      GoogleSignin.configure({
-        webClientId: WEB_CLIENT_ID,
-        offlineAccess: false,
-      });
-    }
-
-    configureGoogleSignIn();
-  }, []);
 
   if(loading){
     return (

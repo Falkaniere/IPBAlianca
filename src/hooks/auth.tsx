@@ -3,6 +3,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { GoogleSignin } from '@react-native-community/google-signin';
 import auth from '@react-native-firebase/auth';
 import { Alert } from 'react-native';
+import { WEB_CLIENT_ID } from '../utils/keys';
 
 interface AuthState {
   user: object;
@@ -23,6 +24,15 @@ export const AuthProvider: React.FC = ({ children }) => {
   const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
+    const configureGoogleSignIn = () => {
+      GoogleSignin.configure({
+        webClientId: WEB_CLIENT_ID,
+        offlineAccess: false,
+      });
+    }
+
+    configureGoogleSignIn();
+
     async function loadStorageData(): Promise<void> {
       setLoading(true)
 
