@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback} from 'react';
-import { Button, Image } from 'react-native';
+import { ActivityIndicator, Image, View } from 'react-native';
 import { GoogleSignin } from '@react-native-community/google-signin';
 import { WEB_CLIENT_ID } from '../../utils/keys';
 import { StyleSheet } from 'react-native';
@@ -11,7 +11,7 @@ import { Container, LoginText } from './styles';
 import { useAuth } from '../../hooks/auth';
 
 const Login: React.FC = () => {
-  const { loginWithGoogle, SignOut, user } = useAuth();
+  const { loginWithGoogle, loading } = useAuth();
 
   useEffect(() => {
     const configureGoogleSignIn = () => {
@@ -23,6 +23,14 @@ const Login: React.FC = () => {
 
     configureGoogleSignIn();
   }, []);
+
+  if(loading){
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', opacity: 0.5}}>
+        <ActivityIndicator size="large" color="#666"/>
+      </View>
+    )
+  }
 
   return (
     <>

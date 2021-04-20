@@ -1,8 +1,5 @@
 import React, { createContext, useCallback, useState, useContext, useEffect } from 'react';
-
-
 import AsyncStorage from '@react-native-community/async-storage';
-
 import { GoogleSignin } from '@react-native-community/google-signin';
 import auth from '@react-native-firebase/auth';
 import { Alert } from 'react-native';
@@ -23,10 +20,12 @@ const AuthContext = createContext<AuthContext>({} as AuthContext);
 
 export const AuthProvider: React.FC = ({ children }) => {
   const [data, setData] = useState<AuthState>({} as AuthState);
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
     async function loadStorageData(): Promise<void> {
+      setLoading(true)
+
       const [user, email] = await AsyncStorage.multiGet([
         '@IPBMorungaba:user',
         '@IPBMorungaba:email'
@@ -44,6 +43,7 @@ export const AuthProvider: React.FC = ({ children }) => {
   }, [])
 
   const loginWithGoogle = useCallback(async () => {
+    setLoading(true)
     const { idToken } = await GoogleSignin.signIn();
 
     const googleCredential = auth.GoogleAuthProvider.credential(idToken);
@@ -57,7 +57,8 @@ export const AuthProvider: React.FC = ({ children }) => {
       ['IPBMorungaba:email', email]
     ]);
 
-    setData({ user, email })
+    setData({ user, email });
+    setLoading(false);
   }, []);
 
   const SignOut = useCallback(async () => {
