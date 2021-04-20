@@ -8,8 +8,8 @@ export const Container = styled.View`
 `;
 
 export const ImageProfile = styled(Image)`
-  width: 200px;
-  height: 200px;
+  width: 180px;
+  height: 180px;
   border-radius: 98px;
   margin: 24px 0;
   align-self: center;
