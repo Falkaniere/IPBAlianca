@@ -2,6 +2,7 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/MaterialIcons'
+import { useAuth } from '../hooks/auth';
 Icon.loadFont();
 
 import Calendar from '../pages/Calendar';
@@ -30,62 +31,80 @@ const App: React.FC = () => {
 
 const Tab = createBottomTabNavigator();
 
-const AppRoutes: React.FC = () => (
-  <Tab.Navigator initialRouteName="Calendar"
-    tabBarOptions={{
-      showLabel: false,
-      activeTintColor: 'green',
-      inactiveTintColor: 'gray',
-      activeBackgroundColor: '#C4C4C4'
-    }}
-  >
-    <Tab.Screen
-      name="Igreja"
-      component={App}
-      options={{
-        tabBarIcon: ({ focused, color }) => {
-          return <Icon name='home' size={36} color={color} />;
-        },
-      }}
-    />
-    <Tab.Screen
-      name="PrayerList"
-      component={PrayerList}
-      options={{
-        tabBarIcon: ({ focused, color }) => {
-          return <Icon name='list' size={36} color={color} />;
-        },
-      }}
-    />
-    <Tab.Screen
-      name="Calendar"
-      component={Calendar}
-      options={{
-        tabBarIcon: ({ focused, color }) => {
-          return <Icon name='today' size={36} color={color} />;
-        },
-      }}
-    />
-    <Tab.Screen
-      name="Avisos"
-      component={Warning}
-      options={{
-        tabBarIcon: ({ focused, color }) => {
-          return <Icon name='feedback' size={36} color={color} />;
-        },
-      }}
-    />
-    <Tab.Screen
-      name="Login"
-      component={Login}
-      options={{
-        title: 'Login',
-        tabBarIcon: ({ focused, color }) => {
-          return <Icon name='person' size={36} color={color} />;
-        },
-      }}
-    />
-  </Tab.Navigator>
-);
+const AppRoutes: React.FC = () => {
+  const { user } = useAuth();
+  return (
+    <>
+      <Tab.Navigator initialRouteName="Calendar"
+        tabBarOptions={{
+          showLabel: false,
+          activeTintColor: 'green',
+          inactiveTintColor: 'gray',
+          activeBackgroundColor: '#C4C4C4'
+        }}
+      >
+        <Tab.Screen
+          name="Igreja"
+          component={App}
+          options={{
+            tabBarIcon: ({ focused, color }) => {
+              return <Icon name='home' size={36} color={color} />;
+            },
+          }}
+        />
+        <Tab.Screen
+          name="PrayerList"
+          component={PrayerList}
+          options={{
+            tabBarIcon: ({ focused, color }) => {
+              return <Icon name='list' size={36} color={color} />;
+            },
+          }}
+        />
+        <Tab.Screen
+          name="Calendar"
+          component={Calendar}
+          options={{
+            tabBarIcon: ({ focused, color }) => {
+              return <Icon name='today' size={36} color={color} />;
+            },
+          }}
+        />
+        <Tab.Screen
+          name="Avisos"
+          component={Warning}
+          options={{
+            tabBarIcon: ({ focused, color }) => {
+              return <Icon name='feedback' size={36} color={color} />;
+            },
+          }}
+        />
+        {user ?
+          <Tab.Screen
+          name="Login"
+          component={Profile}
+          options={{
+            title: 'Login',
+            tabBarIcon: ({ focused, color }) => {
+              return <Icon name='person' size={36} color={color} />;
+            },
+          }}
+          />
+          :
+          <Tab.Screen
+          name="Login"
+          component={Login}
+          options={{
+            title: 'Login',
+            tabBarIcon: ({ focused, color }) => {
+              return <Icon name='person' size={36} color={color} />;
+            },
+          }}
+          />
+        }
+      </Tab.Navigator>
+    </>
+  )
+};
 
 export default AppRoutes;

@@ -49,7 +49,7 @@ const Calendar: React.FC = () => {
 
   return (
     <Container>
-      <Header children='Agenda' arrowGoBack={false}/>
+      <Header children='Agenda' arrowGoBack={false} logoutButton={false}/>
       <EventsList
         data={events}
         keyExtractor={(event) => event.title}

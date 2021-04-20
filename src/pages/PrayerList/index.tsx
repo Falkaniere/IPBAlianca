@@ -62,7 +62,7 @@ const PrayerList: React.FC = () => {
 
   return (
     <Container>
-      <Header children='Lista de Oração' arrowGoBack={false} />
+      <Header children='Lista de Oração' arrowGoBack={false} logoutButton={false}/>
       <OrderList
         data={orders}
         keyExtractor={(order) => order.id}

@@ -42,7 +42,7 @@ const Liturgy: React.FC = () => {
 
   return (
     <ScrollView>
-      <Header children='Liturgia' arrowGoBack={true}/>
+      <Header children='Liturgia' arrowGoBack={true} logoutButton={false}/>
       <LiturgyList>
         <LiturgyContainer>
           <LiturgyTitle>{liturgy?.title}</LiturgyTitle>

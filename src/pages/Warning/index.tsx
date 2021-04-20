@@ -39,7 +39,7 @@ const Warning: React.FC = () => {
 
   return (
     <>
-      <Header children='Avisos' arrowGoBack={false} />
+      <Header children='Avisos' arrowGoBack={false} logoutButton={false}/>
         <WarnList
           data={warn}
           keyExtractor={(warn) => warn.id}

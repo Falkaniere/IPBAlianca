@@ -42,7 +42,7 @@ const Pastoral: React.FC = () => {
 
   return (
     <ScrollView>
-      <Header children='Pastoral' arrowGoBack={true}/>
+      <Header children='Pastoral' arrowGoBack={true} logoutButton={false}/>
         <PastoralList >
           <PastoralContainer>
             <PastoralTitle>{pastoral?.title}</PastoralTitle>

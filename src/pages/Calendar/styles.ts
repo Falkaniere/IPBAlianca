@@ -7,7 +7,6 @@ export const Container = styled.View`
 `;
 
 export const EventsList = styled(FlatList as new () => FlatList<Event>)`
-  /* padding: 32px 18px; */
   margin: 32px 18px 5px;
 `;
 

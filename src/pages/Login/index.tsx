@@ -34,22 +34,9 @@ const Login: React.FC = () => {
           onPress={() => {loginWithGoogle() }} >
             Login com Google
           </ButtonGoogle>
-        <Button onPress={() => { SignOut() }} title='SAIR'/>
       </Container>
     </>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  signInButton: {
-    width: 208,
-    height: 60
-  }
-})
 
 export default Login;

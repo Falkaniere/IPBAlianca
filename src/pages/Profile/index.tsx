@@ -1,17 +1,19 @@
 import React from 'react';
-import { View } from 'react-native';
-import imageProfile from '../../assets/profile.jpg';
-import { Container, ImageProfile, NameProfile } from './styles';
 import Header from '../../components/Header';
-// import
+import { useAuth } from '../../hooks/auth'
+
+import { Container, ImageProfile, NameProfile, EmailProfile } from './styles';
 
 const Profile: React.FC = () => {
+  const { user }: any = useAuth();
+
   return (
     <>
-      <Header children='Perfil' arrowGoBack={false}/>
+      <Header children='Perfil' arrowGoBack={false} logoutButton={true}/>
       <Container>
-        <ImageProfile source={imageProfile} />
-        <NameProfile>TESTE</NameProfile>
+        <ImageProfile source={{ uri: user.photoURL}} />
+        <NameProfile >{user.displayName}</NameProfile>
+        <EmailProfile >{user.email}</EmailProfile>
       </Container>
     </>
   )

@@ -16,7 +16,7 @@ const Church: React.FC = () => {
 
   return (
     <Container>
-      <Header children='Igreja' arrowGoBack={false} />
+      <Header children='Igreja' arrowGoBack={false} logoutButton={false} />
       <View>
         <OpenPastoral onPress={() => navigation.navigate('Pastoral')}>
           <OpenPastoralText>PASTORAL</OpenPastoralText>

@@ -14,6 +14,7 @@ interface AuthState {
 
 interface AuthContext {
   user: object;
+  loading: boolean;
   loginWithGoogle(): Promise<void>;
   SignOut(): Promise<void>;
 }
@@ -22,6 +23,7 @@ const AuthContext = createContext<AuthContext>({} as AuthContext);
 
 export const AuthProvider: React.FC = ({ children }) => {
   const [data, setData] = useState<AuthState>({} as AuthState);
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     async function loadStorageData(): Promise<void> {
@@ -34,6 +36,8 @@ export const AuthProvider: React.FC = ({ children }) => {
       if(user[1] && email[1]) {
         setData({ user: JSON.parse(user[1]), email: email[1] });
       }
+
+      setLoading(false);
     }
 
     loadStorageData();
@@ -73,7 +77,7 @@ export const AuthProvider: React.FC = ({ children }) => {
   },[])
 
   return (
-    <AuthContext.Provider value={{ user: data.user, loginWithGoogle, SignOut}}>
+    <AuthContext.Provider value={{ user: data.user, loginWithGoogle, SignOut, loading}}>
       {children}
     </AuthContext.Provider>
   );
