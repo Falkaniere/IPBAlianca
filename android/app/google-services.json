@@ -1,41 +1,34 @@
 {
   "project_info": {
-    "project_number": "359187868995",
-    "project_id": "appipbmorungaba",
-    "storage_bucket": "appipbmorungaba.appspot.com"
+    "project_number": "8002824105",
+    "firebase_url": "https://ipbmorungaba.firebaseio.com",
+    "project_id": "ipbmorungaba",
+    "storage_bucket": "ipbmorungaba.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:359187868995:android:4febedfc6b6f639ca813f6",
+        "mobilesdk_app_id": "1:8002824105:android:21ba35e065bcd3c42486b8",
         "android_client_info": {
           "package_name": "com.ipbmorungaba"
         }
       },
       "oauth_client": [
         {
-          "client_id": "359187868995-qcfq4db90io2gg6mbue6h2d2mo6diecs.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.ipbmorungaba",
-            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
-          }
-        },
-        {
-          "client_id": "359187868995-2125vpsca6olu7kvs8lts3g4n0hmokbo.apps.googleusercontent.com",
+          "client_id": "8002824105-e8simvdljp3umec9og45j4on2eq9gi6v.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDexuK5aizah52dFDLCdYgg9HhnQ9ywKZM"
+          "current_key": "AIzaSyC7oV-rNokzKc-H2ztjY3HfJlUiArMF6PA"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "359187868995-2125vpsca6olu7kvs8lts3g4n0hmokbo.apps.googleusercontent.com",
+              "client_id": "8002824105-e8simvdljp3umec9og45j4on2eq9gi6v.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

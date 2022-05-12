@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>8002824105-r3762ri1kv7f59j1srnlgfu01s0vglle.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.8002824105-r3762ri1kv7f59j1srnlgfu01s0vglle</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBxUrX9Lpu8FsiULUpu0IDlHjuYI05pY3s</string>
+	<key>GCM_SENDER_ID</key>
+	<string>8002824105</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.ipbmorungaba</string>
+	<key>PROJECT_ID</key>
+	<string>ipbmorungaba</string>
+	<key>STORAGE_BUCKET</key>
+	<string>ipbmorungaba.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:8002824105:ios:4de208e17bf604752486b8</string>
+	<key>DATABASE_URL</key>
+	<string>https://ipbmorungaba.firebaseio.com</string>
+</dict>
+</plist>
