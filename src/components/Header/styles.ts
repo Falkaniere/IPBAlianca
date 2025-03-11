@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import Icon from 'react-native-vector-icons/Feather';
+// import Icon from 'react-native-vector-icons/Feather';
 
 export const Header = styled.View`
   width: 100%;
@@ -36,6 +36,6 @@ export const LogoutButton = styled.Text`
   text-align: right;
 `;
 
-export const IconBack = styled(Icon)`
-  margin-right: 18px
-`;
+// export const IconBack = styled(Icon)`
+//   margin-right: 18px
+// `;

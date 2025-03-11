@@ -1,6 +1,5 @@
 import React, { createContext, useCallback, useState, useContext, useEffect } from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
-import { GoogleSignin } from '@react-native-community/google-signin';
 import auth from '@react-native-firebase/auth';
 import { Alert } from 'react-native';
 import { WEB_CLIENT_ID } from '../utils/keys';
@@ -24,14 +23,7 @@ export const AuthProvider: React.FC = ({ children }) => {
   const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
-    const configureGoogleSignIn = () => {
-      GoogleSignin.configure({
-        webClientId: WEB_CLIENT_ID,
-        offlineAccess: false,
-      });
-    }
 
-    configureGoogleSignIn();
 
     async function loadStorageData(): Promise<void> {
       setLoading(true)
@@ -53,38 +45,41 @@ export const AuthProvider: React.FC = ({ children }) => {
   }, [])
 
   const loginWithGoogle = useCallback(async () => {
-    setLoading(true)
-    const { idToken } = await GoogleSignin.signIn();
+    Alert.alert('Funçao desabilitada',)
 
-    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+    // setLoading(true)
+    // const { idToken } = await GoogleSignin.signIn();
 
-    const userLogin = await auth().signInWithCredential(googleCredential);
-    const { user } = userLogin;
-    const email = JSON.stringify(user.email);
+    // const googleCredential = auth.GoogleAuthProvider.credential(idToken);
 
-    await AsyncStorage.multiSet([
-      ['IPBMorungaba:user', JSON.stringify(user)],
-      ['IPBMorungaba:email', email]
-    ]);
+    // const userLogin = await auth().signInWithCredential(googleCredential);
+    // const { user } = userLogin;
+    // const email = JSON.stringify(user.email);
 
-    setData({ user, email });
-    setLoading(false);
+    // await AsyncStorage.multiSet([
+    //   ['IPBMorungaba:user', JSON.stringify(user)],
+    //   ['IPBMorungaba:email', email]
+    // ]);
+
+    // setData({ user, email });
+    // setLoading(false);
   }, []);
 
   const SignOut = useCallback(async () => {
-    try {
-      await GoogleSignin.revokeAccess()
-      await GoogleSignin.signOut()
 
-      await AsyncStorage.multiRemove([
-        'IPBMorungaba:user',
-        'IPBMorungaba:email'
-      ])
+    // try {
+    //   await GoogleSignin.revokeAccess()
+    //   await GoogleSignin.signOut()
 
-      setData({} as AuthState)
-    } catch (error) {
-      Alert.alert('Something else went wrong... ', error.toString())
-    }
+    //   await AsyncStorage.multiRemove([
+    //     'IPBMorungaba:user',
+    //     'IPBMorungaba:email'
+    //   ])
+
+    //   setData({} as AuthState)
+    // } catch (error) {
+    //   Alert.alert('Something else went wrong... ', error.toString())
+    // }
   },[])
 
   return (

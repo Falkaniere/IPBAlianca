@@ -6,7 +6,7 @@ import CheckBox from '@react-native-community/checkbox';
 import { Container, OrderList, OrderContainer, OrderText } from './styles';
 import Header from '../../components/Header';
 import { Text, View } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+// import Icon from 'react-native-vector-icons/FontAwesome';
 
 export interface Order {
   id: string;

@@ -1,6 +1,5 @@
 import styled from 'styled-components/native';
 import { RectButton } from 'react-native-gesture-handler';
-import AntDesign from 'react-native-vector-icons/AntDesign';
 
 export const Container = styled(RectButton)`
   width: 100%;
@@ -19,6 +18,6 @@ export const ButtonText = styled.Text`
   font-size: 18px;
 `;
 
-export const IconButton = styled(AntDesign)`
-  margin-right: 16px;
-`
+// export const IconButton = styled(AntDesign)`
+//   margin-right: 16px;
+// `

@@ -47,8 +47,8 @@ const AppRoutes: React.FC = () => {
           name="Igreja"
           component={App}
           options={{
-            tabBarIcon: ({ focused, color }) => {
-              return <Icon name='home' size={36} color={color} />;
+            // tabBarIcon: ({ focused, color }) => {
+              // return <Icon name='home' size={36} color={color} />;
             },
           }}
         />
@@ -56,8 +56,8 @@ const AppRoutes: React.FC = () => {
           name="PrayerList"
           component={PrayerList}
           options={{
-            tabBarIcon: ({ focused, color }) => {
-              return <Icon name='list' size={36} color={color} />;
+            // tabBarIcon: ({ focused, color }) => {
+              // return <Icon name='list' size={36} color={color} />;
             },
           }}
         />
@@ -65,8 +65,8 @@ const AppRoutes: React.FC = () => {
           name="Calendar"
           component={Calendar}
           options={{
-            tabBarIcon: ({ focused, color }) => {
-              return <Icon name='today' size={36} color={color} />;
+            // tabBarIcon: ({ focused, color }) => {
+              // return <Icon name='today' size={36} color={color} />;
             },
           }}
         />
@@ -74,8 +74,8 @@ const AppRoutes: React.FC = () => {
           name="Avisos"
           component={Warning}
           options={{
-            tabBarIcon: ({ focused, color }) => {
-              return <Icon name='feedback' size={36} color={color} />;
+            // tabBarIcon: ({ focused, color }) => {
+              // return <Icon name='feedback' size={36} color={color} />;
             },
           }}
         />
@@ -85,8 +85,8 @@ const AppRoutes: React.FC = () => {
           component={Profile}
           options={{
             title: 'Login',
-            tabBarIcon: ({ focused, color }) => {
-              return <Icon name='person' size={36} color={color} />;
+            // tabBarIcon: ({ focused, color }) => {
+              // return <Icon name='person' size={36} color={color} />;
             },
           }}
           />
@@ -96,8 +96,8 @@ const AppRoutes: React.FC = () => {
           component={Login}
           options={{
             title: 'Login',
-            tabBarIcon: ({ focused, color }) => {
-              return <Icon name='person' size={36} color={color} />;
+            // tabBarIcon: ({ focused, color }) => {
+              // return <Icon name='person' size={36} color={color} />;
             },
           }}
           />
